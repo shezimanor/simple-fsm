@@ -1,36 +1,36 @@
 var Light = function() {
     this.currState = FSM.off;
-    this.button = null;
+    this.btn = null;
     this.lightId = 'myLight';
 };
 
 Light.prototype.init = function() {
-    var button = document.createElement('button'),
+    var btn = document.createElement('button'),
         self = this;
 
     button.innerHTML = 'OFF';
-    this.button = document.body.appendChild(button);
+    this.btn = document.body.appendChild(btn);
 
-    this.button.onclick = function() {
-        self.currState.buttonWasPressed.call(self); // 把請求委託給FSM狀態機
+    this.btn.onclick = function() {
+        self.currState.btnBePress.call(self); // 把請求委託給FSM狀態機
     };
 };
 
 var FSM = {
     off: {
-        buttonWasPressed: function() {
-            // console.log('ON');
+        btnBePress: function() {
+            console.log('ON');
             document.getElementById(this.lightId).className = 'light-style light-on';
-            this.button.innerHTML = 'ON';
+            this.btn.innerHTML = 'ON';
             this.currState = FSM.on;
         }
     },
 
     on: {
-        buttonWasPressed: function() {
-            // console.log('OFF');
+        btnBePress: function() {
+            console.log('OFF');
             document.getElementById(this.lightId).className = 'light-style light-off';
-            this.button.innerHTML = 'OFF';
+            this.btn.innerHTML = 'OFF';
             this.currState = FSM.off;
         }
     },
