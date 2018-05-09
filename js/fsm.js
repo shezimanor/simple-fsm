@@ -8,7 +8,7 @@ Light.prototype.init = function() {
     var btn = document.createElement('button'),
         self = this;
 
-    button.innerHTML = 'OFF';
+    btn.innerHTML = 'OFF';
     this.btn = document.body.appendChild(btn);
 
     this.btn.onclick = function() {
